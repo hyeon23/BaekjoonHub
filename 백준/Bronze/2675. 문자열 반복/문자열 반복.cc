@@ -17,10 +17,7 @@ int main()
     for (int i = 0; i < N; ++i)
     {
         cin >> count[i] >> s[i];
-    }
 
-    for (int i = 0; i < N; ++i)
-    {
         for (int k = 0; k < s[i].length(); ++k)
         {
             for (int j = 0; j < count[i]; ++j)
