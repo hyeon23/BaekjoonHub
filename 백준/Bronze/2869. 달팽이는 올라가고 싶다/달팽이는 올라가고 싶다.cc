@@ -11,9 +11,5 @@ int main()
 
     if((V - A) % (A - B) != 0)
         day+= 1;
-
-    if(A >= V)
-        cout << "1";
-    else
-        cout << day;
+    cout << day;
 }
