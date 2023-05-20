@@ -24,8 +24,7 @@ int main(){
         }
     }
 
-    cout << maxVal << "\n";
-    cout << maxRow << " " << maxCol;
+    cout << maxVal << "\n" << maxRow << " " << maxCol;
 
     return 0;
 }
