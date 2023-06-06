@@ -5,13 +5,11 @@ using namespace std;
 
 int main(){
     int average = 0, middle = 0;
-    vector<int> vec;
+    vector<int> vec(5);
 
     for(int i = 0; i < 5; ++i){
-        int x;
-        cin >> x;
-        vec.push_back(x);
-        average += x;
+        cin >> vec[i];
+        average += vec[i];
     }
 
     average = average / vec.size();
