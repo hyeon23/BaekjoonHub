@@ -7,14 +7,15 @@ int divide(int x, int y){
     else return divide(y, x % y);
 }
 
+int lcm(int m, int n){
+    return m * n / divide(m, n);
+}
+
 int main(){
     int T, A, B;
     cin >> T;
     for(int i = 0; i < T; ++i){
         cin >> A >> B;
-        if(A >= B)
-            cout << A * B / divide(A, B) << "\n";
-        else
-            cout << A * B / divide(B, A) << "\n";
+        cout << lcm(A, B) << "\n";
     }
 }
