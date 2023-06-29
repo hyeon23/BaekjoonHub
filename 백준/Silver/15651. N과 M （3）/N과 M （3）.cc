@@ -4,7 +4,6 @@ using namespace std;
 
 int n, m;
 int arr[MAX];      // 정렬된 순열을 담는 배열
-bool visited[MAX]; // 이미 방문된 숫자인지 판별하는 bool 배열
 
 void DFS(int depth)
 {
@@ -17,10 +16,8 @@ void DFS(int depth)
     }
     for (int i = 1; i <= n; i++)
     {
-        visited[i] = true;
         arr[depth] = i;
         DFS(depth + 1);
-        visited[i] = false;
     }
 }
 
