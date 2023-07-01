@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-int A, B, minvalue = 10001;
+int A, B, minvalue;
 
 bool check_prime(int N){
     if(N == 1)
@@ -17,8 +17,7 @@ bool check_prime(int N){
 
 void gold_bach(int N){
     minvalue = 10001;
-    
-    for(int i = 1; i <= N / 2; ++i){
+    for(int i = 1; i <= N / 2; ++i)
         if(check_prime(i) && check_prime(N - i)){//둘 다 소수면
             if(minvalue > abs(N - 2 * i)){
                 A = i, B = N - i;
@@ -26,11 +25,14 @@ void gold_bach(int N){
             }
                 
         }
-    }
     cout << A << ' ' << B << '\n';
 }
 
 int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
     int T, N;
     cin >> T;
     while(T--){
