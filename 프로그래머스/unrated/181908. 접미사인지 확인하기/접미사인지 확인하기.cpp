@@ -3,17 +3,11 @@
 
 using namespace std;
 
-int solution(string my_string, string is_suffix) {
-    int answer = 0;
-    string sumstr = "";
-    for(int i = my_string.size() - 1; i >= 0; --i){
-        sumstr = my_string[i] + sumstr;
-        if(is_suffix == sumstr){
-            answer = 1;
-            break;
-        }
+int solution(string my_string, string is_suffix) {    
+    if(my_string.size() < is_suffix.size())
+    {
+        return 0;
     }
-        
-            
-    return answer;
+    return my_string.substr(my_string.size() - is_suffix.size()) == is_suffix;
 }
+
