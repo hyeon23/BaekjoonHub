@@ -1,18 +1,11 @@
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 string solution(string my_string, int s, int e) {
     string answer = "";
-    int startpos = s;
-    int endpos = e;
-    string str = my_string;
-    while(startpos < endpos){
-        swap(str[startpos++], str[endpos--]);
-    }
-    
-    answer = str;
-        
-    return answer;
+    reverse(my_string.begin() + s, my_string.begin() + e + 1);
+    return my_string;
 }
