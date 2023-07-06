@@ -4,7 +4,6 @@
 using namespace std;
 
 string solution(string myString) {
-    string answer = myString;
-    transform(answer.begin(), answer.end(), answer.begin(), ::toupper);
-    return answer;
+    transform(myString.begin(), myString.end(), myString.begin(), ::toupper);
+    return myString;
 }
