@@ -1,4 +1,5 @@
 #include <map>
+#include <cmath>
 #include <string>
 #include <vector>
 
@@ -10,9 +11,13 @@ int solution(vector<string> strArr) {
     for(int i = 0; i < strArr.size(); ++i)
         map[strArr[i].size()]++;
     
-    for(auto it = map.begin(); it != map.end(); ++it)
-        if((*it).second > curmax){
-            curmax = (*it).second;
-        }
+    for(auto i : map){
+        curmax = max(i.second, curmax);
+    }
+    
+    //for(auto it = map.begin(); it != map.end(); ++it)
+    //    if((*it).second > curmax){
+    //        curmax = (*it).second;
+    //    }
     return curmax;
 }
