@@ -15,33 +15,22 @@ vector<int> solution(int N, vector<int> stages) {
     map<int, int> SM;//스테이지에 도달한 플레이어 수
     vector<pair<float, int>> tmp;
     vector<int> answer;
-    
     sort(stages.begin(), stages.end());
-    //1 2 2 2 3 3 4 6
     for(int i = 0; i < stages.size(); ++i){
         curSM[stages[i]]++;
-        
-        for(int j = 1; j <= stages[i]; ++j){
+        for(int j = 1; j <= stages[i]; ++j)
             SM[j]++;
-        }
     }
-    
     for(int i = 1; i <= N; ++i){
         float fratio;
-        if(SM[i] == 0){
+        if(SM[i] == 0)
             fratio = 0;
-        }
-        else{
+        else
             fratio = curSM[i] / (float)(SM[i]);    
-        }
-        
         tmp.push_back({fratio, i});
     }
-    
     sort(tmp.begin(), tmp.end(), cmp);
-    
     for(const auto i : tmp)
         answer.push_back(i.second);
-    
     return answer;
 }
