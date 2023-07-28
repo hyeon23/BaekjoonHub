@@ -7,10 +7,10 @@ vector<long long> fiboarr(2001, -1);
 
 unsigned long long fibonacci(int N){
     if(fiboarr[N] != -1)
-        return fiboarr[N] % 1234567;
+        return fiboarr[N];
     
-    fiboarr[N] = (fibonacci(N - 1) % 1234567) + (fibonacci(N - 2) % 1234567);
-    return fiboarr[N] % 1234567;
+    fiboarr[N] = ((fibonacci(N - 1) % 1234567) + (fibonacci(N - 2) % 1234567)) % 1234567;
+    return fiboarr[N];
 }
 
 unsigned long long solution(int n) {
