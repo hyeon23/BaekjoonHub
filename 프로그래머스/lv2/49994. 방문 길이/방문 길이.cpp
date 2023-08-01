@@ -1,14 +1,11 @@
 #include <map>
 #include <string>
-#include <vector>
-#include <queue>
+#include <iostream>
+
 using namespace std;
 
 int solution(string dirs) {
     int answer = 0;
-    //start -> to
-    //curpos(x, y) -> secondpos(x, y)
-    //pair<pair<int, int>, pair<int, int>>
     pair<int, int> curpos = {0, 0};
     map<pair<pair<int, int>, pair<int, int>>, int> map;
     
