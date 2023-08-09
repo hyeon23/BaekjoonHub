@@ -16,11 +16,7 @@ int main(){
         map[cpp]++;
     }
 
-    vector<pair<string, int>> vec(map.begin(), map.end());
-
-    sort(vec.begin(), vec.end());
-
-    for(auto i : vec){
+    for(auto i : map){
         cout << i.first << ' ' << i.second << '\n';
     }
 }
