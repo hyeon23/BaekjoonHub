@@ -9,29 +9,29 @@ int main() {
     string str = "";
     string bar = "--------------------------------------------------------------------------------";
     int line_len = 0;
-    
     while(cin >> str) {
         if(str == "<br>") {
             cout << "\n";
             line_len = 0;
-        } else if(str == "<hr>") {
+        } 
+        else if(str == "<hr>") {
             if(line_len != 0) cout << "\n";
             cout << bar << "\n";
             line_len = 0;
-        } else {
+        } 
+        else {
             if(line_len + str.size() < 80) {
                 if(line_len != 0) {
                     cout << " ";
                     line_len++;
                 }
-                cout << str;
-                line_len += str.size();
-            } else {
+            } 
+            else {
                 cout << "\n";
                 line_len = 0;
-                cout << str;
-                line_len += str.size();
             }
+            cout << str;
+            line_len += str.size();
         }
     }
 }
