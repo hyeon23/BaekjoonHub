@@ -1,9 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
-#pragma warning(disable: 4996)
-
 using namespace std;
 
 int main() {
@@ -18,9 +15,7 @@ int main() {
         cin >> X >> Y;
         v.emplace_back(X, Y);
     }
-
     sort(v.begin(), v.end());
-
     //왼쪽 넓이 구하기
     int left_locate = v[0].first;
     int left_MAX = v[0].second;
@@ -36,7 +31,7 @@ int main() {
     //오른쪽 넓이 구하기
     int right_locate = v.back().first;
     int right_MAX = v.back().second;
-    
+
     for (int i = v.size() - 1; i > -1; i--) {
         if (right_MAX < v[i].second) {
             answer += (right_locate - v[i].first) * right_MAX;
@@ -45,6 +40,5 @@ int main() {
         }
     }
     cout << answer + left_MAX << endl;
-
     return 0;
 }
