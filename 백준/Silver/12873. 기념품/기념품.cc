@@ -1,31 +1,16 @@
-#define ll long long int
-#include <iostream>
-#include <cmath>
-#include <deque>
+#include <bits/stdc++.h>
 using namespace std;
 
-int N;
-deque<int> dq;
-int main()
+int main(void)
 {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL); cout.tie(NULL);
-
-	cin >> N;
-	for (int i = 1; i <= N; i++) {
-		dq.push_back(i);
-	}
-
-	for (int i = 1; i <= N - 1; i++) {
-		ll p = pow(i, 3);
-		p--;
-		p %= (N - i + 1);
-
-		while (p--) {
-			dq.push_back(dq.front());
-			dq.pop_front();
-		}
-		dq.pop_front();
-	}
-	cout << dq.front() << "\n";
+    int n; cin >> n;
+    queue<int> q;
+    for(int i=1;i<=n;i++) q.push(i);
+    for(long long i=1,k;i<n;i++) {
+        k=(i*i*i-1)%q.size();
+        for(int i=0;i<k;i++) q.push(q.front()), q.pop();
+        q.pop();
+    }
+    cout << q.front() << '\n';
+    return 0;
 }
