@@ -1,51 +1,39 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
+#define MAX 5001
 using namespace std;
 
-vector<int> graph[5001];
-bool visited[5001];
-int map[5001][5001];
-int n;
+//거리를 저장하는 이차원 공간
+int distmap[MAX][MAX]; //vector<vector<int>> distmap(MAX, vector<int>(MAX));
+//그래프 연결 관계
+vector<int> graph[MAX]; //vector<vector<int>> graph(MAX);
+//방문 체커
+bool visited[MAX]; //vector<bool> visited(MAX);
 long long ans = 0;
-
-
-void init(){
-    
-    //총 방의 개수 N
-    cin >> n;
-    
-    for(int i = 0;i<n-1;i++){
-        int a,b,c;
-        cin >> a >> b >> c;
-        map[a][b] = c;
-        map[b][a] = c;
-        //a와 b를 연결하고, b와 a를 연결(양방향), 길이를 map2차원 배열에 저장
-        graph[a].push_back(b);
-        graph[b].push_back(a);
-    }
-}
-
-void dfs(int start,long long sum){ //start->현재 방, sum -> 길이 갱신
-
-    if(sum > ans){ // 최장 길이 갱신
-        ans = sum;
-    }
-    visited[start] = 1; //현재 방 방문처리
-    
-    for(int i = 0;i<graph[start].size();i++){ //방의 자식들을 대상으로 백트래킹 실행
-        int y = graph[start][i];
-        
-        //백트래킹 코드
-        if(visited[y] == false){
-            visited[y] = true;
-            dfs(y,sum+map[start][y]);
-            visited[y] = false;
+void dfs(int start, long long dist){
+    if(dist > ans) ans = dist;
+    visited[start] = true;//현재 방 방문처리
+    //자식들을 대상으로 백트래킹 시작
+    for(int i = 0; i < graph[start].size(); ++i){
+        int next = graph[start][i];
+        if(!visited[next]){
+            visited[next] = true;
+            dfs(next, dist + distmap[start][next]);
+            visited[next] = false;
         }
     }
-    
 }
-int main(void){
-    init();
-    dfs(1,0);
+int main(){
+    int N, A, B, C;
+    cin >> N;
+    for(int i = 0; i < N-1; ++i){
+        cin >> A >> B >> C;
+        distmap[A][B] = C;
+        distmap[B][A] = C;
+
+        //a와 b를 연결하고, b와 a를 연결(양방향), 길이를 map에 저장
+        graph[A].push_back(B);
+        graph[B].push_back(A);
+    }
+    dfs(1, 0);
     cout << ans;
 }
