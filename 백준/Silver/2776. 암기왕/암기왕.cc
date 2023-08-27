@@ -7,7 +7,7 @@ int main(){
     cout.tie(0);
     int T, N, M, tmp;
     cin >> T;
-    set<int> book;
+    unordered_set<int> book;
     while(T--){
         cin >> N;
         book.clear();
