@@ -6,7 +6,7 @@ int main(){
     string str;
     cin >> N;
 
-    map<string, int> wan;
+    unordered_map<string, int> wan;
 
     for(int i = 0; i < N; ++i){
         cin >> str;
