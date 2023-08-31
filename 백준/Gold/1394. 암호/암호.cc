@@ -1,24 +1,34 @@
-#include<stdio.h>
-#include<string.h>
-int ans, len, pos[200], cnt, g;
-char key, data[1000010];
-int main()
-{
-    int i;
-    while (1)
-    {
-        scanf("%c", &key);
-        if (key == 10) break;
-        pos[key] = ++cnt;
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+
+  string s;
+  getline(cin, s);
+  string code;
+  getline(cin, code);
+  vector<int> arr(200, 0);
+  int result = 0;
+  int size = s.length();
+
+  for (int i = 0; i < s.length(); ++i) {
+    int index = s[i] - '!';
+    if (arr[index] == 0) {
+      arr[index] = i + 1;
     }
-    scanf("%s", &data);
-    len = strlen(data);
-    g = 1;
-    for (i = len - 1; i >= 0; i--)
-    {
-        ans = (ans + g*pos[data[i]]) % 900528;
-        g = g*cnt % 900528;
-    }
-    printf("%d", ans);
-    return 0;
+  }
+
+  for (int i = 0; i < code.length(); ++i) {
+    int index = code[i] - '!';
+
+    result *= size;
+    result += arr[index];
+    result %= 900528;
+  }
+
+  cout << result << "\n";
+  return 0;
 }
