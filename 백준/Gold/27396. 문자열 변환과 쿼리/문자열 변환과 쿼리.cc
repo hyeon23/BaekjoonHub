@@ -1,24 +1,26 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
-int main(){
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-    string S, a, b;
-    int n, cmd;
-    cin >> S >> n;
-    while(n--){
-        cin >> cmd;
-        if(cmd == 1){
-            cin >> a >> b;
-            if(a == b) continue;
-            while(S.find(a) != string::npos){
-                S.replace(S.find(a), a.size(), b);
-            }
+ 
+string s;
+char M[130];
+int n;
+ 
+int main()
+{
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    for (n = 65; n < 123; n++) M[n] = n;
+    cin >> s >> n;
+    for (char p, q, i; n--;)
+        if (cin >> i; i & 1)
+        {
+            cin >> p >> q;
+            for (i = 65; i < 123; i++)
+                if (M[i] == p)
+                    M[i] = q;
         }
-        else if(cmd == 2){
-            cout << S << '\n';;
+        else
+        {
+            for (char i : s) cout << M[i];
+            cout << '\n';
         }
-    }
 }
