@@ -16,6 +16,9 @@ struct cmp{
 };
 
 int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
     //우선순위 큐: 우선순위 값 큰것 -> id가 가장 작은 것
     //실행된 프로세스 -> 실행 필요 시간 - 1
     //잔여 프로세스 -> 우선순위 + 1
