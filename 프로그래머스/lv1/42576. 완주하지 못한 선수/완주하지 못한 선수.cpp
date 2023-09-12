@@ -5,15 +5,12 @@
 using namespace std;
 
 string solution(vector<string> participant, vector<string> completion) {
-    map<string, int> mpA;
-    map<string, int> mpB;
+    sort(participant.begin(), participant.end());
+    sort(completion.begin(), completion.end());
     
-    for(int i = 0; i < participant.size(); ++i)
-        mpA[participant[i]]++;
-    for(int i = 0; i < completion.size(); ++i)
-        mpB[completion[i]]++;
-    
-    for(const auto i : mpA)
-        if(i.second > mpB[i.first])
-            return i.first;
+    for(int i = 0; i < completion.size(); ++i){
+        if(participant[i] != completion[i])
+            return participant[i];
+    }
+    return participant[participant.size() - 1];
 }
