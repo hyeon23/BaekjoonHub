@@ -3,16 +3,24 @@ using namespace std;
 
 int main(){
     //해시함수 -> 자료의 저장과 탐색에 쓰임
-    int N;
+    unsigned long long N;
     cin >> N;
 
     string str;
     cin >> str;
 
-    long long sum = 0;
+    unsigned long long sum = 0;
 
-    for(int i = 0; i < N; ++i){
-        sum += (((str[i] - 'a' + 1) % 1234567891) * ((long long)powl(31, i) % 1234567891)) % 1234567891;
+    for(unsigned long long i = 0; i < N; ++i){
+        unsigned long long ai = (str[i] - 'a' + 1) % 1234567891;
+
+        unsigned long long ri = 1;
+
+        for(int j = 0; j < i; ++j){
+            ri *= 31 % 1234567891;
+        }
+        
+        sum += ai * ri % 1234567891;
     }
 
     cout << sum;
