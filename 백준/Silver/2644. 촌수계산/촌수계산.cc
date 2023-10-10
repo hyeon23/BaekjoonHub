@@ -8,19 +8,19 @@ vector<bool> dist(101, false);
 vector<int> level(101, 0);
 
 int dfs(int start, int to){
-    queue<int> que;
+    stack<int> stk;
 
     dist[start] = true;
-    que.push(start);
+    stk.push(start);
 
     level[start] = 0;
 
     int ans = -1;
     
-    while(!que.empty()){
-        int cur = que.front();
+    while(!stk.empty()){
+        int cur = stk.top();
 
-        que.pop();
+        stk.pop();
         
         for(int i = 0; i < vvec[cur].size(); ++i){
             int curNode = vvec[cur][i];
@@ -32,7 +32,7 @@ int dfs(int start, int to){
 
             dist[curNode] = true;
             
-            que.push(curNode);
+            stk.push(curNode);
         }
     }
 
@@ -50,19 +50,6 @@ int main(){
         vvec[x].push_back(y);
         vvec[y].push_back(x);
     }
-
-    //1: 2, 3
-    //2: 1, 7, 8, 9
-    //3: 1
-    //4: 5, 6
-    //5: 4
-    //6: 4
-    //7: 2
-    //8: 2
-    //9: 2
-
-    //에지를 통해 갈 수 없다면 -1 출력
-    //에지를 통해 x번에 갈 수 있다면 x 출력
 
     cout << dfs(one, two);
 
