@@ -4,16 +4,13 @@ using namespace std;
 int N, one, two;
 
 vector<vector<int>> vvec(101);
-vector<bool> dist(101, false);
-vector<int> level(101, 0);
+vector<int> visited(101, -1);
 
 int dfs(int start, int to){
     stack<int> stk;
 
-    dist[start] = true;
+    visited[start] = 0;
     stk.push(start);
-
-    level[start] = 0;
 
     int ans = -1;
     
@@ -24,14 +21,9 @@ int dfs(int start, int to){
         
         for(int i = 0; i < vvec[cur].size(); ++i){
             int curNode = vvec[cur][i];
-            if(dist[curNode] == true) continue;
-            
-            level[curNode] = level[cur]+1;
-
-            if(curNode == to) return level[curNode];
-
-            dist[curNode] = true;
-            
+            if(visited[curNode] != -1) continue;
+            visited[curNode] = visited[cur]+1;
+            if(curNode == to) return visited[curNode];
             stk.push(curNode);
         }
     }
@@ -41,17 +33,13 @@ int dfs(int start, int to){
 
 int main(){
     cin >> N >> one >> two;
-
     int M, x, y;
-
     cin >> M;
     for(int i = 0; i < M; ++i){
         cin >> x >> y;
         vvec[x].push_back(y);
         vvec[y].push_back(x);
     }
-
     cout << dfs(one, two);
-
     return 0;
 }
