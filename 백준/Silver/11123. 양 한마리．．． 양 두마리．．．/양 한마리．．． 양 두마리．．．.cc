@@ -6,15 +6,15 @@ int H, W;
 int dx[4] = {0, 1, 0, -1};
 int dy[4] = {1, 0, -1, 0};
 
-void dfs(pair<int, int> cur, vector<vector<char>>& vvec, vector<vector<bool>>& visited){
-    stack<pair<int, int>> stk;
+void bfs(pair<int, int> cur, vector<vector<char>>& vvec, vector<vector<bool>>& visited){
+    queue<pair<int, int>> que;
 
     visited[cur.first][cur.second] = true;
-    stk.push(cur);
+    que.push(cur);
 
-    while(!stk.empty()){
-        pair<int, int> curpos = stk.top();
-        stk.pop();
+    while(!que.empty()){
+        pair<int, int> curpos = que.front();
+        que.pop();
 
         for(int i = 0; i < 4; ++i){
             int nx = curpos.first + dx[i];
@@ -25,7 +25,7 @@ void dfs(pair<int, int> cur, vector<vector<char>>& vvec, vector<vector<bool>>& v
             if(visited[nx][ny] || vvec[nx][ny] == '.') continue;
 
             visited[nx][ny] = true;
-            stk.push({nx, ny});
+            que.push({nx, ny});
         }
     }
 }
@@ -38,7 +38,7 @@ int main(){
 
     while(T--){
         int cnt = 0;
-        
+
         cin >> H >> W;
         
         vector<vector<char>> vvec(101, vector<char>(101));
@@ -53,7 +53,7 @@ int main(){
         for(int i = 0; i < H; ++i){
             for(int j = 0; j < W; ++j){
                 if(!visited[i][j] && vvec[i][j] == '#'){
-                    dfs({i, j}, vvec, visited);
+                    bfs({i, j}, vvec, visited);
                     ++cnt;
                 }
             }
