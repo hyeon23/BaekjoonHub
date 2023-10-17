@@ -1,28 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int main(){
     ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-
+    cin.tie(0); cout.tie(0);
     string N;
     int F;
 
     cin >> N >> F;
 
-    N[N.size() - 2] = '0';
-    N[N.size() - 1] = '0';
+    for(int i = 0; i <= 9; ++i){
+        for(int j = 0; j <= 9; ++j){
+            N[N.size()-2] = i + '0';
+            N[N.size()-1] = j + '0';
 
-    for (int i = 0; i < 100; ++i) {
-        N[N.size() - 2] = (i / 10) + '0';
-        N[N.size() - 1] = (i % 10) + '0';
-
-        if (stoi(N) % F == 0) {
-            cout << setw(2) << setfill('0') << i;
-            return 0;
+            if(stoll(N) % F == 0){
+                cout << i << j;
+                return 0;
+            }
         }
     }
-
     return 0;
 }
