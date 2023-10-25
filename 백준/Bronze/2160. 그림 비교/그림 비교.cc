@@ -5,32 +5,22 @@ char arr[51][5][7];
 
 int checkcnt(int n, int m){
     int cnt = 0;
-
-    for(int i = 0; i < 5; ++i){
-        for(int j = 0; j < 7; ++j){
-            if(arr[n][i][j] != arr[m][i][j]) ++cnt;
-        }
-    }
-
+    for(int i = 0; i < 5; ++i)
+        for(int j = 0; j < 7; ++j)
+            if(arr[n][i][j] != arr[m][i][j]) 
+                ++cnt;
     return cnt;
 }
 
 int main(){
-    int N;
+    int N, min = INT_MAX, f, s;
     cin >> N;
 
-    for(int i = 0; i < N; ++i){
-        for(int j = 0; j < 5; ++j){
-            for(int k = 0; k < 7; ++k){
+    for(int i = 0; i < N; ++i)
+        for(int j = 0; j < 5; ++j)
+            for(int k = 0; k < 7; ++k)
                 cin >> arr[i][j][k];
-            }
-        }
-    }
-
-    int min = INT_MAX;
-
-    int f, s;
-
+                
     for(int i = 0; i < N; ++i){
         for(int j = i+1; j < N; ++j){
             if(min > checkcnt(i, j)){
@@ -40,8 +30,6 @@ int main(){
             }
         }   
     }
-
     cout << f+1 << ' ' << s+1 << '\n';
-
     return 0;
 }
