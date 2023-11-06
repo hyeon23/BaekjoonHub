@@ -22,7 +22,7 @@ int main(){
         }
         else if(sum > M){
             sum -= arr[start];
-            start++;
+            ++start;
         }
         else if(sum == M){
             sum -= arr[start];
