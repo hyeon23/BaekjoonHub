@@ -1,30 +1,27 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+
     int n;
     cin >> n;
     vector<int> citations(n);
 
-    for (int i = 0; i < n; ++i) {
+    for(int i = 0; i < n; ++i)
         cin >> citations[i];
-    }
 
-    sort(citations.rbegin(), citations.rend());  // Sort the citations in descending order
+    sort(citations.rbegin(), citations.rend());
 
     int h_index = 0;
-    for (int i = 0; i < n; ++i) {
-        if (citations[i] >= i + 1) {
-            h_index = i + 1;
-        } else {
-            break;
-        }
+
+    for(int i = 0; i < n; ++i){
+        if(citations[i] >= i + 1) h_index = i + 1;
+        else break;
     }
 
-    cout << h_index << endl;
+    cout << h_index << '\n';
 
     return 0;
 }
