@@ -7,13 +7,12 @@ int main(){
 
 	int N, M, B;
 
-
 	cin >> N >> M >> B;
 
 	int arr[N][M];
 	
-	int mn = 257;
-	int mx = -1;
+	int mn = INT_MAX;
+	int mx = INT_MIN;
 
 	for(int i = 0; i < N; ++i){
 		for(int j = 0; j < M; ++j){
@@ -23,7 +22,7 @@ int main(){
 		}
 	}
 
-	int anst = 1e9;
+	int anst = INT_MAX;
 	int ansh = -1;
 
 	for(int i = mn; i <= mx; ++i){//제일 낮은 층수 to 제일 높은 층수
