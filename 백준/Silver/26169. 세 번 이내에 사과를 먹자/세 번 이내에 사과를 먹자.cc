@@ -17,21 +17,18 @@ void DFS(pair<int, int> curPos, int depth){
         if(cost[curPos.x][curPos.y] >= 2){
             ans = true;
         }
+        return;
     }
-    else{
-        for(int i = 0; i < 4; ++i){
-            int nx = curPos.x + dx[i];
-            int ny = curPos.y + dy[i];
-
-            if(nx < 0 || ny < 0 || nx >= 5 || ny >= 5) continue;
-
-            if(board[nx][ny] == -1) continue;
-
-            if(board[nx][ny] == 1) cost[nx][ny] = max(cost[nx][ny], cost[curPos.x][curPos.y]+1);
-            else cost[nx][ny] = max(cost[nx][ny], cost[curPos.x][curPos.y]);
-            board[curPos.x][curPos.y] = -1;
-            DFS({nx, ny}, depth+1);
-        }
+    
+    for(int i = 0; i < 4; ++i){
+        int nx = curPos.x + dx[i];
+        int ny = curPos.y + dy[i];
+        if(nx < 0 || ny < 0 || nx >= 5 || ny >= 5) continue;
+        if(board[nx][ny] == -1) continue;
+        if(board[nx][ny] == 1) cost[nx][ny] = max(cost[nx][ny], cost[curPos.x][curPos.y]+1);
+        else cost[nx][ny] = max(cost[nx][ny], cost[curPos.x][curPos.y]);
+        board[curPos.x][curPos.y] = -1;
+        DFS({nx, ny}, depth+1);
     }
 }
 
