@@ -2,21 +2,15 @@
 using namespace std;
 
 int main(){
-    
+    string res = "DCBAE";
     for(int i = 0; i < 3; ++i){
         int bcnt = 0;
         for(int j = 0; j < 4; ++j){
             int tmp;
             cin >> tmp;
-            if(tmp == 0) ++bcnt;
+            bcnt += tmp;
         }
-
-        if(bcnt == 0) cout << "E\n";
-        else if(bcnt == 1) cout << "A\n";
-        else if(bcnt == 2) cout << "B\n";
-        else if(bcnt == 3) cout << "C\n";
-        else if(bcnt == 4) cout << "D\n";
-
+        cout << res[bcnt] << '\n';
     }
     return 0;
 }
