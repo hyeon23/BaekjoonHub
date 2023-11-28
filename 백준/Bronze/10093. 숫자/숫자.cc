@@ -2,12 +2,12 @@
 using namespace std;
 
 int main(){
-    int A, B;
+    long long A, B;
     cin >> A >> B;
     if(A > B) swap(A, B);
     if(B - A - 1 == -1) cout << 0;
     else cout << B - A - 1 << '\n';
-    for(int i = A + 1; i < B; ++i){
+    for(long long i = A + 1; i < B; ++i){
         if(i == B - 1) cout << i;
         else cout << i << ' ';
     }
