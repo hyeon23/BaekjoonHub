@@ -11,17 +11,14 @@ int main(){
     long long cnt = 0;
     cout << '<';
     while(!q.empty()){
-        ++cnt;
-        if(cnt % K == 0){
-            if(q.size() == 1) cout << q.front();
-            else cout << q.front() << ", ";
-            q.pop();
-
-        }
-        else{
+        for(int i = 0; i < K - 1; ++i){
             q.push(q.front());
             q.pop();
         }
+        cout << q.front();
+        q.pop();
+
+        if(q.size()) cout << ", ";
     }
    cout << '>'; 
 }
