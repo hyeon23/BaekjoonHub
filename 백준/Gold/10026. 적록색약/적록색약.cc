@@ -1,24 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 int N, cntN = 0, cntAb = 0;
-
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
-
 char boardN[101][101];
 char boardAb[101][101];
 bool visitedN[101][101] = {false,};
 bool visitedAb[101][101] = {false,};
-
 void bfs(pair<int, int> curpos, int type){
-    queue<pair<int, int>> que;
-    que.push(curpos);
+    stack<pair<int, int>> stk;
+    stk.push(curpos);
     if(type == 0) visitedN[curpos.first][curpos.second] = true;
     else if(type == 1) visitedAb[curpos.first][curpos.second] = true;
-    while(!que.empty()){
-        pair<int, int> cur = que.front();
-        que.pop();
+    while(!stk.empty()){
+        pair<int, int> cur = stk.top();
+        stk.pop();
         for(int i = 0; i < 4; ++i){
             int nx = cur.first + dx[i];
             int ny = cur.second + dy[i];
@@ -32,11 +28,10 @@ void bfs(pair<int, int> curpos, int type){
                 if(visitedAb[nx][ny] || boardAb[cur.first][cur.second] != boardAb[nx][ny]) continue;
                 visitedAb[nx][ny] = true;
             }
-            que.push({nx, ny});
+            stk.push({nx, ny});
         }
     }
 }
-
 int main(){
     char tmp;
     cin >> N;
@@ -48,7 +43,6 @@ int main(){
             boardAb[i][j] = tmp;
         }
     }
-
     for(int i = 0; i < N; ++i){
         for(int j = 0; j < N; ++j){
             //정상인에 대한 탐색
