@@ -8,12 +8,12 @@ bool visited[26][26] = {false,};
 vector<int> ans;
 void bfs(pair<int, int> cur){
     int answer = 0;
-    queue<pair<int, int>> que;
-    que.push(cur);
-    while(!que.empty()){
-        int cx = que.front().first;
-        int cy = que.front().second;
-        que.pop();
+    stack<pair<int, int>> stk;
+    stk.push(cur);
+    while(!stk.empty()){
+        int cx = stk.top().first;
+        int cy = stk.top().second;
+        stk.pop();
         ++answer;
         for(int i = 0; i < 4; ++i){
             int nx = cx + dx[i];
@@ -21,7 +21,7 @@ void bfs(pair<int, int> cur){
             if(nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
             if(visited[nx][ny] || board[nx][ny] == '0') continue;
             visited[nx][ny] = true;
-            que.push({nx, ny});
+            stk.push({nx, ny});
         }
     }
     ans.push_back(answer);
