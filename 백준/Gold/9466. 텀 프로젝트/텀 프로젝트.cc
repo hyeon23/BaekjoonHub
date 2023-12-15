@@ -1,45 +1,43 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
+#include <cstring>
+#define MAX 100001
 using namespace std;
-int arr[100001];
-int n;
-int state[100001]; 
-const int NOT_VISITED = 0;
-const int CYCLE_IN = -1;
-void run(int x){
-  int cur = x;
-  while(true){
-    state[cur] = x;
-    cur = arr[cur];
-    // 이번 방문에서 지나간 학생에 도달했을 경우
-    if(state[cur] == x){
-      while(state[cur] != CYCLE_IN){
-        state[cur] = CYCLE_IN;
-        cur = arr[cur];
-      }
-      return;
-    }
-    // 이전 방문에서 지나간 학생에 도달했을 경우
-    else if(state[cur] != 0) return;
-  }
+int t, n;
+int graph[MAX];
+bool visited[MAX];
+bool done[MAX];
+int cnt;
+void hasCycle(int node) {
+	visited[node] = true;
+	int next = graph[node];
+	if (!visited[next]) {
+		hasCycle(next);
+	}
+	else if (!done[next]) {//방문은 했지만 아직 사이클이 아니라면 next까지 포함해서 사이클 완성
+		//자기 자신을 포함한 팀의 멤버를 카운트
+		for (int i = next; i != node; i = graph[i]) {
+			cnt++;
+		}
+		cnt++;
+	}
+	done[node] = true;
 }
-int main(void){
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-  int t;
-  cin >> t;
-  while(t--){
-    cin >> n;
-    fill(state+1, state+n+1, 0);
-    for(int i = 1; i <= n; i++)
-      cin >> arr[i];
-    int ans = 0;
-    for(int i = 1; i <= n; i++){
-      if(state[i] == NOT_VISITED) run(i);
-    }
-    int cnt = 0;
-    for(int i = 1; i <= n; i++){
-      if(state[i] != CYCLE_IN) cnt++;
-    }
-    cout << cnt << '\n';
-  }
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0); cout.tie(0);
+	cin >> t;
+	while (t--) { cin >> n;
+		for (int i = 1; i <= n; i++) cin >> graph[i];
+		for (int i = 1; i <= n; i++) {
+			if (!visited[i]) {
+				hasCycle(i);
+			}
+		}
+		cout << n-cnt << '\n';
+		cnt = 0;
+        fill(visited+1, visited+n+1, false);
+        fill(done+1, done+n+1, false);
+	}
+	return 0;
 }
