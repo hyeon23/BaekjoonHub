@@ -15,25 +15,23 @@ bool all_melt(){
     }
     return true;
 }
-
-void bfs(int x, int y){
-    queue<pair<int, int>> que;
+void dfs(int x, int y){
+    stack<pair<int, int>> stk;
     visited[x][y] = true;
-    que.push({x, y});
-    while(!que.empty()){
-        pair<int, int> cur = que.front();
-        que.pop();
+    stk.push({x, y});
+    while(!stk.empty()){
+        pair<int, int> cur = stk.top();
+        stk.pop();
         for(int i = 0; i < 4; ++i){
             int nx = cur.first + dx[i];
             int ny = cur.second + dy[i];
             if(nx < 0 || ny < 0 || nx >= N || ny >= M) continue;
             if(visited[nx][ny] || board[nx][ny] == 0) continue;
             visited[nx][ny] = true;
-            que.push({nx, ny});
+            stk.push({nx, ny});
         }
     }
 }
-
 int main(){
     int year = 0;
     bool trigger = false;
@@ -48,7 +46,7 @@ int main(){
             for(int j = 0; j < M; ++j){
                 if(board[i][j] != 0 && !visited[i][j]) { 
                     ++part;
-                    bfs(i, j);
+                    dfs(i, j);
                     if(part >= 2) {
                         trigger = true;
                         break;
@@ -58,9 +56,7 @@ int main(){
             if(trigger) break;
         }
         if(trigger) break;
-        
         year++;//년도 증가
-
         //빙하 감소
         vector<vector<int>> mcnt(N, vector<int>(M, 0));
         for(int i = 0; i < N; ++i){
@@ -76,13 +72,11 @@ int main(){
                 }
             }
         }
-
         for(int i = 0; i < N; ++i){
             for(int j = 0; j < M; ++j){
                 board[i][j] = max(board[i][j] - mcnt[i][j], 0);
             }
         }
-
         //배열 초기화
         for(int i = 0; i < N; ++i)
             for(int j = 0; j < M; ++j)
