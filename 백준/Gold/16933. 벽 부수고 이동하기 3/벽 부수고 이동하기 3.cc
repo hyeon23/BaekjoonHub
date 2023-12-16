@@ -1,23 +1,17 @@
-// Authored by : heheHwang
-// Co-authored by : BaaaaaaaaaaarkingDog
-// http://boj.kr/77063fc182b64ce689f3636e86bd2eef
 #include <bits/stdc++.h>
 using namespace std;
-
 int n, m, k;
-string board[1002];
+string board[1001];
 // x, y, 부순 횟수, 낮/밤 여부(낮 = 0, 밤 = 1)
-int dist[1002][1002][12][2];
+int dist[1001][1001][11][2];
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 int main(void) {
   ios::sync_with_stdio(0);
   cin.tie(0);
-
   cin >> n >> m >> k;
   for (int i = 0; i < n; i++)
     cin >> board[i];
-
   queue<tuple<int, int, int, int>> q;
   q.push({0, 0, 0, 0});
   dist[0][0][0][0] = 1;
