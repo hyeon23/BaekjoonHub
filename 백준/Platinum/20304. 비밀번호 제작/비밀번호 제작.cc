@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int N, M;
+int N, M, ret = -1;
 int max_bit_size = 0; // 최대 비트 크기를 저장하는 변수
 vector<int> passwards; // 비밀번호 목록을 저장하는 배열
 vector<int> visited(1000001, 0); // 방문 여부를 저장하는 배열
@@ -13,7 +13,7 @@ void Make_max_bit_size(){
         max_bit_size++;
     }
 }
-int Bfs(){
+void Bfs(){
     queue<int> que;
     // 초기 비밀번호들을 시작점으로 설정하여 BFS 수행
     for(int i = 0; i < passwards.size(); ++i){
@@ -36,10 +36,6 @@ int Bfs(){
             }
         }
     }
-    int ret = -1;
-    // 최종적으로 방문한 비밀번호들 중에서 가장 깊은 깊이를 찾아 반환
-    for(int i = 0; i <= N; ++i) ret = max(ret, depth[i]);
-    return ret;
 }
 int main(){
     ios::sync_with_stdio(0);
@@ -51,5 +47,8 @@ int main(){
         passwards.push_back(passward);
     }
     Make_max_bit_size(); // 최대 비트 크기 계산
-    cout << Bfs(); // BFS 수행 결과 출력
+    Bfs(); // BFS 수행
+    // 최종적으로 방문한 비밀번호들 중에서 가장 깊은 깊이를 찾아 반환
+    for(int i = 0; i <= N; ++i) ret = max(ret, depth[i]);
+    cout << ret;
 }
