@@ -26,7 +26,8 @@ int Bfs(){
         que.pop();
         // 현재 비밀번호의 각 비트를 토글하여 새로운 비밀번호 생성
         for(int i = 0; i < max_bit_size; ++i){
-            int to = (from ^ (1 << i)); // 비트 토글 연산 (XOR)
+            //(1 << i):  << i는 i번째 비트가 1이고 나머지 비트는 0인 값
+            int to = (from ^ (1 << i)); // ^: XOR / &: AND / |: OR
             // 새로운 비밀번호가 범위 내에 있고 아직 방문하지 않았다면 큐에 추가
             if(to <= N && visited[to] == 0){
                 visited[to] = 1;
@@ -43,14 +44,12 @@ int Bfs(){
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
-
     cin >> N >> M;
     int passward;
     for(int i = 0; i < M; ++i){
         cin >> passward;
         passwards.push_back(passward);
     }
-
     Make_max_bit_size(); // 최대 비트 크기 계산
     cout << Bfs(); // BFS 수행 결과 출력
 }
