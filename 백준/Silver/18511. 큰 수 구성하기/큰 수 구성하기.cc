@@ -1,31 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int n, k, ans;
-vector<int> v;
-
-void dfs(int num, int ten){
-    if(num > n) return;
-
-    ans = max(ans, num);
-
-    for(int i = 0; i < v.size(); ++i)
-        dfs(num + ten * v[i], ten * 10);
-}
-
-int main(){
-    cin.tie(0);
-    cin >> n >> k;
-
-    int input;
-
-    for(int i = 0; i < k; ++i){
-        cin >> input;
-        v.push_back(input);
+int N, K, tmp, ans = 0;
+vector<int> vec;
+void dfs(int a, int n){
+    if(a > N) return;
+    ans = max(ans, a);
+    for(int i = 0; i < vec.size(); ++i){
+        dfs(a + vec[i] * n, n * 10);
     }
-    sort(v.begin(), v.end());
-
+}
+int main(){
+    cin >> N >> K;
+    for(int i = 0; i < K; ++i){
+        cin >> tmp;
+        vec.push_back(tmp);
+    }
     dfs(0, 1);
-
-    cout << ans << '\n';
+    cout << ans;
+    return 0;
 }
