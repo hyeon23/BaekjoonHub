@@ -6,16 +6,16 @@ void move(int n, int start, int end){
 }
 void hanoi(int n, int start, int end, int sub){
     if(n == 1) {
-        //move(1, start, end);
-        cout << start << ' ' << end << '\n';
+        move(1, start, end);
         return;
     }
     hanoi(n-1, start, sub, end);
-    cout << start << ' ' << end << '\n';
+    move(1, start, end);
     hanoi(n-1, sub, end, start);
 }
 
 int main(){
+    //unsigned long long int의 범위를 벗어난다(pow(2, 100) => 다른방식 필요)
     ios::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
     cin >> N;
