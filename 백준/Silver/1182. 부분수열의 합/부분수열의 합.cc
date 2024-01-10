@@ -30,7 +30,6 @@ int main(){
         cin >> tmp;
         input.push_back(tmp);
     }
-    sort(input.begin(), input.end());
     DFS(0, 0, 0);
     cout << ans;
     return 0;
