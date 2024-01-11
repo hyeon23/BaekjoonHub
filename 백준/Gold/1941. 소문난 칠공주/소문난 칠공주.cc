@@ -1,9 +1,7 @@
 //1. 25명 중 7명을 뽑는다.
 //2. 이다솜파가 4명 이상인지, 모든 학생이 인접해있는지 검사한다.
-
 #include <bits/stdc++.h>
 using namespace std;
-
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 vector<string> arr(5);
@@ -63,7 +61,7 @@ void DFS(int depth, int num){
     for(int i = num; i < 25; ++i){
         if(!visited[i]){
             visited[i] = true;
-            DFS(depth+1, i);
+            DFS(depth+1, i+1);
             visited[i] = false;
         }
     }
