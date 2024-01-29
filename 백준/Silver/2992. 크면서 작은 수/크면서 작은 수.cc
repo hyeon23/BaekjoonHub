@@ -4,8 +4,7 @@ string X;
 int main(){
     cin >> X;
     string tmp = X;
-    next_permutation(X.begin(), X.end());
-    if(stoi(tmp) < stoi(X)) cout << X;
+    if(next_permutation(X.begin(), X.end())) cout << X;
     else cout << 0;
     return 0;
 }
