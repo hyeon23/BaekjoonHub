@@ -1,33 +1,27 @@
-#include <iostream>
-#define MAX 9
+#include <bits/stdc++.h>
 using namespace std;
-
-int n,m;
-int arr[MAX] = {0,};
-bool visited[MAX] = {0,};
-
-void dfs(int num, int cnt)
-{
-    if(cnt == m)
-    {
-        for(int i = 0; i < m; i++)
-            cout << arr[i] << ' ';
+int N, M;
+vector<int> vec(9);
+vector<bool> visited(9, false);
+void DFS(int depth, int num){
+    if(depth == M){
+        for(int i = 0; i < M; ++i){
+            cout << vec[i] << ' ';
+        }
         cout << '\n';
         return;
     }
-    for(int i = num; i <= n; i++)
-    {
-        if(!visited[i])
-        {
-            visited[i] = true;
-            arr[cnt] = i;
-            dfs(i+1,cnt+1);
-            visited[i] = false;
-        }
+
+    for(int i = num; i <= N; ++i){
+        if(visited[i]) continue;
+        visited[i] = true;
+        vec[depth] = i;
+        DFS(depth + 1, i + 1);
+        visited[i] = false;
     }
 }
-
-int main() {
-    cin >> n >> m;
-    dfs(1,0);
+int main(){
+    cin >> N >> M;
+    DFS(0, 1);
+    return 0;
 }
