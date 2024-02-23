@@ -1,27 +1,23 @@
-#include<bits/stdc++.h>
-
+#include <bits/stdc++.h>
 using namespace std;
-
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int t;
-    cin >> t;
-    priority_queue<int> max; //작은것들의 max값이 top
-    priority_queue<int,vector<int>,greater<int>> min; //큰것들의 min값이 top
+    int N;
+    cin >> N;
+    priority_queue<int, vector<int>, less<int>> max; //max heap
+    priority_queue<int, vector<int>, greater<int>> min; //min heap
 
-    while (t--) {
+    while (N--) {
         int a, size;
         cin >> a;
-        if (max.size() == min.size()) {
-            max.push(a);
-        }
-        else {
-            min.push(a);
-        }
-        if (!max.empty()&&!min.empty()&&max.top()>min.top()) {
+        if (max.size() == min.size()) max.push(a);
+        else min.push(a);
+
+        //swap
+        if (!max.empty() && !min.empty() && max.top() > min.top()) {
             int max_val, min_val;
             max_val = max.top();
             min_val = min.top();
